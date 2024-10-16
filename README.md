@@ -6,7 +6,7 @@ El proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cl
 
 Ejecutar `npm install` para instalar las librerías.
 
-## Servidor de desarrollo
+## Modo desarrollo
 
 Ejecutar `ng serve` para iniciar el modo desarrollo.
 
