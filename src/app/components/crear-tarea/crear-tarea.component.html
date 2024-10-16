@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col"> 
+      <h2 class="mb-4">Crear Nueva Tarea</h2>
+    </div>
+    <div class="col text-center">
+      <button class="btn btn-secondary" routerLink="/listar">
+        <i class="fas fa-arrow-left"></i> Atrás
+      </button>
+    </div> 
+  </div>
+
+  <form (ngSubmit)="crearTarea()">
+    <div class="mb-3">
+      <label for="titulo" class="form-label">Título:</label>
+      <input type="text" [(ngModel)]="nuevaTarea.titulo" name="titulo" class="form-control" id="titulo" required>
+    </div>
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <input type="text" [(ngModel)]="nuevaTarea.descripcion" name="descripcion" class="form-control" id="descripcion" required>
+    </div>
+    <div class="text-end">
+      <button type="submit" class="btn btn-success">Crear Tarea</button>
+    </div>
+  </form>
+</div>
