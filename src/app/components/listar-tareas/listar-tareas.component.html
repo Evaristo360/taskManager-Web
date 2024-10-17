@@ -36,7 +36,7 @@
             </ul>
           </div>
         </td>
-        <td>{{ tarea.fechaCreacion }}</td>
+        <td>{{ formatearFecha(tarea.fechaCreacion) }}</td>
         <td>
           <button class="btn btn-info me-2" routerLink="/detalle/{{ tarea.id }}">
             <i class="fas fa-eye"></i> Ver

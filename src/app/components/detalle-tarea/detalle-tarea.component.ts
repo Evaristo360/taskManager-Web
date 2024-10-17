@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { Tarea } from '../../models/tarea.model';
   selector: 'app-detalle-tarea',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
-  providers: [TareasService],
+  providers: [TareasService, DatePipe],
   templateUrl: './detalle-tarea.component.html',
   styleUrls: ['./detalle-tarea.component.css']
 })
@@ -22,7 +22,8 @@ export class DetalleTareaComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private tareasService: TareasService,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -49,5 +50,12 @@ export class DetalleTareaComponent implements OnInit {
       console.error('ID de tarea no encontrado en la ruta, redirigiendo a /listar');
       this.router.navigate(['/listar']);
     }
+  }
+  
+  formatearFecha(fecha?: Date): string | null {
+    if (!fecha) {
+      return null;
+    }
+    return this.datePipe.transform(fecha, 'dd/MM/yyyy HH:mm');
   }
 }

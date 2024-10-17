@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'; 
@@ -10,14 +10,14 @@ import { Tarea } from '../../models/tarea.model';
   selector: 'app-listar-tareas',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
-  providers: [TareasService],
+  providers: [TareasService, DatePipe],
   templateUrl: './listar-tareas.component.html',
   styleUrls: ['./listar-tareas.component.css']
 })
 export class ListarTareasComponent implements OnInit {
   tareas: Tarea[] = [];
 
-  constructor(private tareasService: TareasService) {}
+  constructor(private tareasService: TareasService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.cargarTareas();
@@ -41,5 +41,9 @@ export class ListarTareasComponent implements OnInit {
     this.tareasService.updateTarea(tarea).subscribe(() => {
       console.log('Estado actualizado:', tarea);
     });
+  }
+
+  formatearFecha(fecha: Date): string | null {
+    return this.datePipe.transform(fecha, 'dd/MM/yyyy HH:mm');
   }
 }
